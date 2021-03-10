@@ -1452,19 +1452,19 @@
             <param name="this"></param>
             <returns></returns>
         </member>
-        <member name="P:Snowflake.Romfile.StructuredFilename.NamingConvention">
+        <member name="P:Snowflake.Romfile.Naming.StructuredFilename.NamingConvention">
             <inheritdoc/>
         </member>
-        <member name="P:Snowflake.Romfile.StructuredFilename.RegionCode">
+        <member name="P:Snowflake.Romfile.Naming.StructuredFilename.RegionCode">
             <inheritdoc/>
         </member>
-        <member name="P:Snowflake.Romfile.StructuredFilename.Title">
+        <member name="P:Snowflake.Romfile.Naming.StructuredFilename.Title">
             <inheritdoc/>
         </member>
-        <member name="P:Snowflake.Romfile.StructuredFilename.Year">
+        <member name="P:Snowflake.Romfile.Naming.StructuredFilename.Year">
             <inheritdoc/>
         </member>
-        <member name="P:Snowflake.Romfile.StructuredFilename.OriginalFilename">
+        <member name="P:Snowflake.Romfile.Naming.StructuredFilename.OriginalFilename">
             <inheritdoc/>
         </member>
         <member name="M:Snowflake.Romfile.Tokenizer.GoodToolsTokenClassifier.ClassifyBracketsTokens(System.Collections.Generic.IEnumerable{System.ValueTuple{System.String,System.Int32}})">
