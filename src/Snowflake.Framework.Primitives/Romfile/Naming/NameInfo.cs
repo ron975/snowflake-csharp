@@ -12,12 +12,13 @@ namespace Snowflake.Romfile.Naming
     /// </summary>
     public sealed record NameInfo
     {
+
         /// <summary>
         /// The title of the game as it was parsed from the filename.
         /// </summary>
         public string Title { get; }
         /// <summary>
-        /// The title normalized according to the <a href="https://github.com/SnowflakePowered/shiratsu/blob/master/spec.md">shiratsu specification</a>.
+        /// The title normalized according to the <a href="https://github.com/SnowflakePowered/shiratsu/blob/master/SPECIFICATION.md">shiratsu specification</a>.
         /// </summary>
         public string NormalizedTitle => NameInfo.NormalizeTitle(this.Title);
         /// <summary>
@@ -54,10 +55,14 @@ namespace Snowflake.Romfile.Naming
             => (NamingConvention, Title, Region, Flags, Version, Year) = (convention, entryTitle, region, flags, version, year);
 
         /// <summary>
-        /// Normalize a title according to the <a href="https://github.com/SnowflakePowered/shiratsu/blob/master/spec.md">shiratsu specification</a>.
+        /// Normalize a title according to the <a href="https://github.com/SnowflakePowered/shiratsu/blob/master/SPECIFICATION.md">shiratsu specification</a>.
         /// </summary>
         /// <param name="title">The title to normalize.</param>
         /// <returns>The normalized title.</returns>
-        public static string NormalizeTitle(string title) => title;
+        public static string NormalizeTitle(string title)
+        {
+            var builder = new StringBuilder(title);
+            return builder.ToString();
+        }
     }
 }

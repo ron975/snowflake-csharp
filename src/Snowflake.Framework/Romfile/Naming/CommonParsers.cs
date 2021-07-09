@@ -22,8 +22,5 @@ namespace Snowflake.Romfile.Naming
 
         public static StringParser InBrackets(StringParser inner) =>
             inner.Between(OpenBracket, CloseBracket);
-
-
-
     }
 }
