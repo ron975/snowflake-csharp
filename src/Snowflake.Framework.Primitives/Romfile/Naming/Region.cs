@@ -50,6 +50,7 @@ namespace Snowflake.Romfile.Naming
         /// <summary>
         /// Bulgaria
         /// </summary>
+        Bulgaria,
         /// <summary>
         /// Brazil
         /// </summary>

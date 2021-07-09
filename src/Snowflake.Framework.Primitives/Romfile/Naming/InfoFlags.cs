@@ -10,7 +10,7 @@ namespace Snowflake.Romfile.Naming
     /// Info flags associated with the filename
     /// </summary>
     [Flags]
-    public enum InfoFlags
+    public enum InfoFlags : long
     {
         /// <summary>
         /// No flags
@@ -25,7 +25,7 @@ namespace Snowflake.Romfile.Naming
         /// <summary>
         /// The game dump is of a demo.
         /// 
-        /// Corresponds to any TOSEC 'demo' flag, as well as the NoIntro Sample flag.
+        /// Corresponds to any TOSEC 'demo' flag, as well as the NoIntro Demo and 'Taikenban' flag.
         /// </summary>
         Demo = 1 << 1,
 
@@ -127,6 +127,32 @@ namespace Snowflake.Romfile.Naming
         /// <summary>
         /// Development software
         /// </summary>
-        Development = Alpha | Beta | Preview | Prerelease
+        Development = Alpha | Beta | Preview | Prerelease,
+
+        /// <summary>
+        /// Kiosk
+        /// Also applicable to 'Tentou Taikenban'
+        /// </summary>
+        Kiosk = 1 << 20,
+
+        /// <summary>
+        /// Sample 
+        /// </summary>
+        Sample = 1 << 21,
+        
+        /// <summary>
+        /// Bonus Disc
+        /// </summary>
+        Bonus = 1 << 22,
+
+        /// <summary>
+        /// Either a demo, sample, kiosk version, or a bonus
+        /// </summary>
+        EvaluationVersion = Demo | Sample | Kiosk,
+
+        /// <summary>
+        /// A BIOS file.
+        /// </summary>
+        BIOS = 1 << 23
     }
 }

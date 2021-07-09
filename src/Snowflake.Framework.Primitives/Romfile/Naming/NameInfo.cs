@@ -35,7 +35,7 @@ namespace Snowflake.Romfile.Naming
         /// <summary>
         /// The version of the game if any.
         /// </summary>
-        public Version? Version { get; }
+        public RomVersion? Version { get; }
         /// <summary>
         /// The year of the game if any.
         /// </summary>
@@ -50,7 +50,7 @@ namespace Snowflake.Romfile.Naming
         /// <param name="flags">The info flags as were parsed from the filename.</param>
         /// <param name="version">The version if available from the filename.</param>
         /// <param name="year">The year if available from the filename.</param>
-        public NameInfo(NamingConvention convention, string entryTitle, ImmutableArray<Region> region, InfoFlags flags, Version? version = null, Year? year = null)
+        public NameInfo(NamingConvention convention, string entryTitle, ImmutableArray<Region> region, InfoFlags flags, RomVersion? version = null, Year? year = null)
             => (NamingConvention, Title, Region, Flags, Version, Year) = (convention, entryTitle, region, flags, version, year);
 
         /// <summary>

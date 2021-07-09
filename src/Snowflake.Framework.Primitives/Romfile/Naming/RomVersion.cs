@@ -9,7 +9,7 @@ namespace Snowflake.Romfile.Naming
     /// <summary>
     /// Represents a version in a filename
     /// </summary>
-    public sealed record Version
+    public sealed record RomVersion
     {
         /// <summary>
         /// The tag used to specify this version. 
@@ -25,7 +25,7 @@ namespace Snowflake.Romfile.Naming
         /// <summary>
         /// The minor version or revision number
         /// </summary>
-        public string Minor { get; }
+        public string? Minor { get; }
 
         /// <summary>
         /// Intantiates a Version instance.
@@ -33,6 +33,14 @@ namespace Snowflake.Romfile.Naming
         /// <param name="tag">The tag used to specify this version. </param>
         /// <param name="major">The major version.</param>
         /// <param name="minor">The minor version</param>
-        public Version(string tag, string major, string minor) => (Tag, Major, Minor) = (tag, major, minor);
+        public RomVersion(string tag, string major, string minor) => (Tag, Major, Minor) = (tag, major, minor);
+
+        /// <summary>
+        /// Intantiates a Version instance without a minor version.
+        /// </summary>
+        /// <param name="tag">The tag used to specify this version. </param>
+        /// <param name="major">The major version.</param>
+        public RomVersion(string tag, string major) => (Tag, Major, Minor) = (tag, major, null);
+
     }
 }

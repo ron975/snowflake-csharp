@@ -13,10 +13,11 @@ namespace Snowflake.Romfile.Naming
     public interface IRegionParser
     {
         /// <summary>
-        /// Returns an array of 
+        /// Returns an array of <see cref="Region"/> parsed from the region string. If the region string is invalid, 
+        /// returns an empty array. 
         /// </summary>
-        /// <param name="regionString"></param>
-        /// <returns></returns>
+        /// <param name="regionString">The input string.</param>
+        /// <returns>An immutable array of <see cref="Region"/> contained in the region string.</returns>
         ImmutableArray<Region> ParseRegion(string regionString);
     }
 }
