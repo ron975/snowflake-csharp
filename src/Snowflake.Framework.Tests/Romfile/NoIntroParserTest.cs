@@ -62,5 +62,24 @@ namespace Snowflake.Romfile.Tests
             var r = NoIntroRegionParser.ParseRegion("Japan, Europe, Australia, New Zealand").ToList();
             Assert.Equal(r, NoIntroNameParser.ParseRegion.Parse("(Japan, Europe, Australia, New Zealand)").Value);
         }
+
+        [Fact]
+        public void Parse_Region_End()
+        {
+            // need to convert to list to trigger xunit overload
+            var r = NoIntroRegionParser.ParseRegion("Japan, Europe, Australia, New Zealand").ToList();
+            var res = NoIntroNameParser.ParseRegionAndEnsureEnd.Parse("(Japan, Europe) (b12)");
+            Assert.Equal(r, NoIntroNameParser.ParseRegionAndEnsureEnd.Parse("(Japan, Europe, Australia, New Zealand) (b12)").Value);
+        }
+
+        [Fact]
+        public void TryParse_Test()
+        {
+            var parser = new NoIntroNameParser();
+            parser.TryParse("FIFA 20 - Portuguese (Brazil) In-Game Commentary (World)", out var fifa20);
+            parser.TryParse("Odekake Lester - Lelele no Le (^^; (Japan)", out var odekake);
+            parser.TryParse("void tRrLM(); Void Terrarium (Japan)", out var voidTer);
+
+        }
     }
 }

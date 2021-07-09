@@ -13,7 +13,7 @@ namespace Snowflake.Romfile.Naming
     {
         /// <summary>
         /// The tag used to specify this version. 
-        /// For example, 'Version' or 'Rev'
+        /// For example, 'Version' or 'Rev'.
         /// </summary>
         public string Tag { get; }
 
@@ -26,6 +26,18 @@ namespace Snowflake.Romfile.Naming
         /// The minor version or revision number
         /// </summary>
         public string? Minor { get; }
+
+        /// <summary>
+        /// The version prefix, if any.
+        /// This is not the version type, but the prefix that appears, separated by a space, before the type.
+        /// </summary>
+        public string? Prefix { get; }
+
+        /// <summary>
+        /// The version suffix, if any.
+        /// This appears after the version number, separated by a space.
+        /// </summary>
+        public string Suffix { get; }
 
         /// <summary>
         /// Intantiates a Version instance.
