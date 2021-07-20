@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Snowflake.Romfile.Naming
+namespace Snowflake.Romfile.Naming.Tags
 {
     /// <summary>
     /// Represents a version in a filename
     /// </summary>
-    public sealed record RomVersion
+    public sealed record VersionTag
+        : RomTag
     {
         /// <summary>
         /// The tag used to specify this version. 
@@ -37,22 +38,30 @@ namespace Snowflake.Romfile.Naming
         /// The version suffix, if any.
         /// This appears after the version number, separated by a space.
         /// </summary>
-        public string Suffix { get; }
+        public string? Suffix { get; }
+
+        /// <summary>
+        /// The type of the tag ("Version")
+        /// </summary>
+        public override string Slug => "Version";
 
         /// <summary>
         /// Intantiates a Version instance.
         /// </summary>
         /// <param name="tag">The tag used to specify this version. </param>
         /// <param name="major">The major version.</param>
-        /// <param name="minor">The minor version</param>
-        public RomVersion(string tag, string major, string minor) => (Tag, Major, Minor) = (tag, major, minor);
+        /// <param name="minor">The minor version.</param>
+        /// <param name="tagType">The type of the tag.</param>
+        public VersionTag(string tag, string major, string minor, TagCategory tagType) => (Tag, Major, Minor, Category) = (tag, major, minor, tagType);
 
         /// <summary>
         /// Intantiates a Version instance without a minor version.
         /// </summary>
         /// <param name="tag">The tag used to specify this version. </param>
         /// <param name="major">The major version.</param>
-        public RomVersion(string tag, string major) => (Tag, Major, Minor) = (tag, major, null);
+        public VersionTag(string tag, string major) => (Tag, Major, Minor) = (tag, major, null);
+
+
 
     }
 }

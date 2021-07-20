@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Pidgin;
+using static Pidgin.Parser<char>;
 using static Pidgin.Parser;
 using static Pidgin.Parser<char, string>;
 using StringParser = Pidgin.Parser<char, string>;
+
 namespace Snowflake.Romfile.Naming
 {
     internal static class CommonParsers
@@ -20,6 +23,7 @@ namespace Snowflake.Romfile.Naming
         public static StringParser OpenBracket = String("[");
         public static StringParser CloseBracket = String("]");
 
+        public static StringParser TakeUntil<T>(Parser<char, T> inner) => Any.AtLeastOnceUntil(Lookahead(inner)).Select(s => string.Concat(s));
         public static StringParser InBrackets(StringParser inner) =>
             inner.Between(OpenBracket, CloseBracket);
     }

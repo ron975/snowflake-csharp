@@ -9,53 +9,18 @@ using static Pidgin.Parser<char>;
 using static Pidgin.Parser<char, string>;
 using static Snowflake.Romfile.Naming.CommonParsers;
 
-using StringParser = Pidgin.Parser<char, string>;
-using InfoFlagParser = Pidgin.Parser<char, Snowflake.Romfile.Naming.InfoFlags>;
-using VersionParser = Pidgin.Parser<char, Snowflake.Romfile.Naming.RomVersion>;
-using RegionParser = Pidgin.Parser<char, System.Collections.Generic.IEnumerable<Snowflake.Romfile.Naming.Region>>;
-using Version = Snowflake.Romfile.Naming.RomVersion;
 using Xunit;
 using Pidgin;
 using Snowflake.Romfile.Naming.NoIntroParser;
 using System.Collections.Immutable;
 using System.IO;
+using StringParser = Pidgin.Parser<char, string>;
 
 namespace Snowflake.Romfile.Tests
 {
     public class NoIntroParserTest
     {
-        InfoFlagParser ParseUnlicensed = InParens(String("Unl")).ThenReturn(InfoFlags.Unlicensed);
-        InfoFlagParser ParseProto = InParens(String("Proto")).ThenReturn(InfoFlags.Prototype);
-        InfoFlagParser ParseKiosk = InParens(String("Kiosk")).ThenReturn(InfoFlags.Kiosk);
-        InfoFlagParser ParseDemo = InParens(String("Demo")).ThenReturn(InfoFlags.Demo);
-        InfoFlagParser ParseBonus = InParens(String("Bonus Disc")).ThenReturn(InfoFlags.Bonus);
-        InfoFlagParser ParseTaikenban = InParens(String("Taikenban")).ThenReturn(InfoFlags.Demo);
-        InfoFlagParser ParseTentouTaikenban = InParens(String("Tentou Taikenban")).ThenReturn(InfoFlags.Kiosk);
-        InfoFlagParser ParseBadDump = InBrackets(String("b")).ThenReturn(InfoFlags.BadDump);
-        InfoFlagParser ParseBIOS = InBrackets(String("BIOS")).ThenReturn(InfoFlags.BIOS);
-
        
-
-        VersionParser ParseRevision = InParens(String("Rev ")
-            .Then(DecimalNum).Map(v => new Version("Rev", v.ToString())));
-
-        VersionParser ParseVersion = InParens(
-            OneOf(String("v"), String("Version "))
-                .Then(Map((major, minor) => new Version("Version", major.ToString(), minor.GetValueOrDefault()), 
-                        DecimalNum, Char('.').Then(OneOf(LetterOrDigit, Char('.')).AtLeastOnceString()).Optional()
-                        )
-                    )
-            );
-        
-        [Fact]
-        public void Parse_Test()
-        {
-            var ver = ParseRevision.Parse("(Rev 4)");
-            var verX = ParseVersion.Parse("(Version 4.52)");
-            var verY = ParseVersion.Parse("(Version 4)");
-            var verD = ParseVersion.Parse("(v4.XX)");
-        }
-
         [Fact]
         public void Parse_Region()
         {
@@ -74,13 +39,31 @@ namespace Snowflake.Romfile.Tests
         }
 
         [Fact]
+        public void Multitap()
+        {
+
+            StringParser ParseRedumpMultitapInner = Sequence(String("Multi Tap ("), TakeUntil(String(")")), String(")"), TakeUntil(String(")"))).Map(s => string.Concat(s));
+            StringParser ParseRedumpMultitapTap = InParens(
+                ParseRedumpMultitapInner
+                );
+            var res = ParseRedumpMultitapTap.Parse("(Multi Tap (SCPH-10090) Doukonban)");
+        }
+        [Fact]
         public void TryParse_Test()
         {
             var parser = new NoIntroNameParser();
             Assert.True(parser.TryParse("FIFA 20 - Portuguese (Brazil) In-Game Commentary (World)", out var fifa20));
             Assert.True(parser.TryParse("Odekake Lester - Lelele no Le (^^; (Japan)", out var odekake));
             Assert.True(parser.TryParse("void tRrLM(); Void Terrarium (Japan)", out var voidTer));
-            Assert.True(parser.TryParse("xB14 - [BIOS] void tRrLM(); Void Terrarium (Japan)", out var voidTerx));
+            Assert.True(parser.TryParse("xB14 - [BIOS] void tRrLM(); Void Terrarium (Japan) (Multi Tap (SCPH-10090) Doukonban) (Tag)", out var voidTerx));
+
+        }
+        [Fact]
+        public void TryParse2_Test()
+        {
+            var parser = new NoIntroNameParser();
+     
+            Assert.True(parser.TryParse("Seisen Chronicle (Japan) (eShop) [b]", out var voidTerx));
 
         }
 

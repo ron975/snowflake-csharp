@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Snowflake.Romfile.Naming.Tags;
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -18,7 +19,8 @@ namespace Snowflake.Romfile.Naming
                 nameInfo = null;
                 return false;
             }
-            nameInfo = new NameInfo(structured.NamingConvention, structured.Title, ImmutableArray.Create<Region>(), InfoFlags.None);
+            
+            nameInfo = new NameInfo(structured.NamingConvention, structured.Title, ImmutableArray.Create<Region>(), ImmutableArray.Create<RomTag>(), RomInfo.None);
             return true;
         }
     }

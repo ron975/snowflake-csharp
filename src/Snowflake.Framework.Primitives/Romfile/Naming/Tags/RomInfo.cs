@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Snowflake.Romfile.Naming
+namespace Snowflake.Romfile.Naming.Tags
 {
     /// <summary>
     /// Info flags associated with the filename
     /// </summary>
     [Flags]
-    public enum InfoFlags : long
+    public enum RomInfo : long
     {
         /// <summary>
         /// No flags

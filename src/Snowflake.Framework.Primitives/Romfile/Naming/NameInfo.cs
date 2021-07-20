@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Snowflake.Romfile.Naming.Tags;
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -29,19 +30,15 @@ namespace Snowflake.Romfile.Naming
         /// <summary>
         /// Flags this game is associated with.
         /// </summary>
-        public InfoFlags Flags { get; }
+        public RomInfo Info { get; }
         /// <summary>
         /// The naming convention used to parse this name.
         /// </summary>
         public NamingConvention NamingConvention { get; }
         /// <summary>
-        /// The version of the game if any.
+        /// An array of ROM information tags this ROM was parsed with.
         /// </summary>
-        public RomVersion? Version { get; }
-        /// <summary>
-        /// The year of the game if any.
-        /// </summary>
-        public Year? Year { get; }
+        public ImmutableArray<RomTag> Tags { get; }
 
         /// <summary>
         /// Initialize a new NameInfo
@@ -49,11 +46,10 @@ namespace Snowflake.Romfile.Naming
         /// <param name="convention">The naming convention.</param>
         /// <param name="entryTitle">The title as it was parsed from the filename.</param>
         /// <param name="region">The regions as were parsed from the filename.</param>
-        /// <param name="flags">The info flags as were parsed from the filename.</param>
-        /// <param name="version">The version if available from the filename.</param>
-        /// <param name="year">The year if available from the filename.</param>
-        public NameInfo(NamingConvention convention, string entryTitle, ImmutableArray<Region> region, InfoFlags flags, RomVersion? version = null, Year? year = null)
-            => (NamingConvention, Title, Region, Flags, Version, Year, NormalizedTitle) = (convention, entryTitle, region, flags, version, year, NameInfo.NormalizeTitle(entryTitle));
+        /// <param name="tags">The tags parsed from the filename.</param>
+        /// <param name="rominfo">The info flags as were parsed from the filename, derived from the parsed tags.</param>
+        public NameInfo(NamingConvention convention, string entryTitle, ImmutableArray<Region> region, ImmutableArray<RomTag> tags, RomInfo rominfo)
+            => (NamingConvention, Title, Region, Tags, Info, NormalizedTitle) = (convention, entryTitle, region, tags, rominfo, NameInfo.NormalizeTitle(entryTitle));
 
         private readonly static (int comma, string repl, Regex regex)[] ARTICLES =
         {
