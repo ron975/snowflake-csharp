@@ -16,6 +16,7 @@ using RegionParser = Pidgin.Parser<char, System.Collections.Generic.IEnumerable<
 using System.Collections.Immutable;
 using Pidgin;
 using Snowflake.Romfile.Naming.Tags;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Snowflake.Romfile.Naming.NoIntroParser
 {
@@ -79,7 +80,7 @@ namespace Snowflake.Romfile.Naming.NoIntroParser
                                                                     select new NameInfo(NamingConvention.NoIntro, title.Trim(), region.ToImmutableArray(), tags,
                                                                       MergeInfoFlags(tags));
                                                                     
-        public bool TryParse(string filename, out NameInfo? nameInfo)
+        public bool TryParse(string filename, [NotNullWhen(true)] out NameInfo? nameInfo)
         {
             var res = NameParser.Parse(filename);
             nameInfo = res.Success ? res.Value : null;

@@ -1453,48 +1453,6 @@
             <param name="this"></param>
             <returns></returns>
         </member>
-        <member name="P:Snowflake.Romfile.Naming.StructuredFilename.NamingConvention">
-            <inheritdoc/>
-        </member>
-        <member name="P:Snowflake.Romfile.Naming.StructuredFilename.RegionCode">
-            <inheritdoc/>
-        </member>
-        <member name="P:Snowflake.Romfile.Naming.StructuredFilename.Title">
-            <inheritdoc/>
-        </member>
-        <member name="P:Snowflake.Romfile.Naming.StructuredFilename.Year">
-            <inheritdoc/>
-        </member>
-        <member name="P:Snowflake.Romfile.Naming.StructuredFilename.OriginalFilename">
-            <inheritdoc/>
-        </member>
-        <member name="M:Snowflake.Romfile.Tokenizer.GoodToolsTokenClassifier.ClassifyBracketsTokens(System.Collections.Generic.IEnumerable{System.ValueTuple{System.String,System.Int32}})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Snowflake.Romfile.Tokenizer.GoodToolsTokenClassifier.ClassifyParensTokens(System.Collections.Generic.IEnumerable{System.ValueTuple{System.String,System.Int32}})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Snowflake.Romfile.Tokenizer.GoodToolsTokenClassifier.ExtractTitleTokens(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Snowflake.Romfile.Tokenizer.NoIntroTokenClassifier.ClassifyBracketsTokens(System.Collections.Generic.IEnumerable{System.ValueTuple{System.String,System.Int32}})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Snowflake.Romfile.Tokenizer.NoIntroTokenClassifier.ClassifyParensTokens(System.Collections.Generic.IEnumerable{System.ValueTuple{System.String,System.Int32}})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Snowflake.Romfile.Tokenizer.NoIntroTokenClassifier.ExtractTitleTokens(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Snowflake.Romfile.Tokenizer.TosecTokenClassifier.ClassifyParensTokens(System.Collections.Generic.IEnumerable{System.ValueTuple{System.String,System.Int32}})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Snowflake.Romfile.Tokenizer.TosecTokenClassifier.ClassifyBracketsTokens(System.Collections.Generic.IEnumerable{System.ValueTuple{System.String,System.Int32}})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Snowflake.Romfile.Tokenizer.TosecTokenClassifier.ExtractTitleTokens(System.String)">
-            <inheritdoc/>
-        </member>
         <member name="P:Snowflake.Scraping.Extensibility.Culler.TargetType">
             <inheritdoc />
         </member>

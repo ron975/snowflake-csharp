@@ -57,8 +57,10 @@ namespace Snowflake.Scraping
 
                 if (file.MimeType.StartsWith("application/vnd.stone-romfile"))
                 {
-                    var structuredFileName = new StructuredFilename(file.File.Name);
-                    yield return ("search_title", structuredFileName.Title);
+                    if (CommonParsers.TryParseFileName(file.File.Name, true, out var structuredFileName))
+                    {
+                        yield return ("search_title", structuredFileName.Title);
+                    }                    
                 }
             }
         }
