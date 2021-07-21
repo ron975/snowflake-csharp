@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using Snowflake.Model.Game;
 using Snowflake.Model.Game.LibraryExtensions;
 using Snowflake.Romfile;
+using Snowflake.Romfile.Naming;
 
 namespace Snowflake.Scraping
 {
@@ -56,8 +57,12 @@ namespace Snowflake.Scraping
 
                 if (file.MimeType.StartsWith("application/vnd.stone-romfile"))
                 {
-                    var structuredFileName = new StructuredFilename(file.File.Name);
-                    yield return ("search_title", structuredFileName.Title);
+                    //// todo: call commonparsers externally
+                    //if (CommonParsers.TryParseFileName(file.File.Name, true, out var structuredFileName))
+                    //{
+                    //    yield return ("search_title", structuredFileName.NormalizedTitle);
+                    //}
+                    yield return ("search_filename", file.File.Name);
                 }
             }
         }
